@@ -1,0 +1,213 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('photo/chrismas.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    overflow: hidden; /* Pour éviter le défilement avec les flocons */
+}
+
+header {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 3em;
+    color: #FFD700;
+    margin: 0;
+}
+
+.message-card {
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 500px;
+}
+
+.message-card input {
+    padding: 10px;
+    width: 80%;
+    margin: 10px auto;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.message-card button {
+    padding: 10px 20px;
+    background: #FF4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.message-display {
+    display: none;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFD700;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.message-display::before {
+    content: "🎄";
+    font-size: 2em;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.countdown {
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 500px;
+    color: #FFD700;
+    font-size: 1.5em;
+}
+
+.countdown span {
+    font-weight: bold;
+    color: #FF4500;
+}
+.music-control {
+    position: fixed; 
+    bottom: 80px; 
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7); 
+    padding: 10px 20px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    text-align: center; 
+    z-index: 1000; 
+}
+
+.music-control button {
+    background: linear-gradient(45deg, #FFD700, #FF4500); 
+    color: white; 
+    font-size: 1.2em;
+    padding: 10px 15px; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: transform 0.3s, box-shadow 0.3s; 
+}
+
+.music-control button:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 6px 20px rgba(255, 69, 0, 0.8); 
+}
+.github-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.github-link a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.github-link a:hover {
+    color: #FF4500;
+    transform: scale(1.1);
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #FFD700;
+}
+
+.snowflake {
+    position: fixed;
+    top: -10%;
+    font-size: 1em;
+    color: white;
+    animation: fall 10s linear infinite, sway 2s ease-in-out infinite;
+}
+
+@keyframes fall {
+    0% { top: -10%; }
+    100% { top: 110%; }
+}
+
+@keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
+}
+@media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Permet le défilement vertical si nécessaire */
+    }
+    header h1 {
+        font-size: 2em; /* Réduction de la taille du titre */
+    }
+    .message-card, .message-display, .countdown {
+        width: 95%; /* Réduit la largeur pour les petits écrans */
+        font-size: 1em; /* Ajuste la taille de la police */
+    }
+    .message-card button {
+        font-size: 0.9em; /* Ajuste la taille du bouton */
+    }
+    .countdown {
+        font-size: 1.2em;
+    }
+    .snowflake {
+        font-size: 1.5em; /* Ajuste la taille des flocons */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    .message-card input {
+        width: 90%; /* Laisse plus de place pour les petits écrans */
+    }
+    footer {
+        font-size: 0.8em; /* Réduction de la taille de texte dans le footer */
+    }
+}

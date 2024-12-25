@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Joyeux Noël</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎄 Joyeux Noël 🎄</h1>
+    </header>
+
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="music/WE_WISH_YOU_A_MERRY_XMAS(256k).mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    <div class="music-control">
+        <button onclick="toggleMusic()">🎵 Arrêter/Reprendre la musique</button>
+    </div>
+
+    <div class="message-card">
+        <p>Entrez votre prénom pour recevoir un message personnalisé :</p>
+        <input type="text" id="userName" placeholder="Votre prénom ici...">
+        <button onclick="generateMessage()">Voir mon message</button>
+    </div>
+
+    <div id="messageDisplay" class="message-display"></div>
+
+    <div class="countdown">
+        Temps depuis minuit le 25 décembre : 
+        <br>
+        <span id="countdown">Calcul en cours...</span>
+    </div>
+    <div class="github-link">
+        <a href="https://github.com/ton-nom-d-utilisateur/ton-repository" target="_blank" rel="noopener noreferrer">
+            🌟 Voir le projet sur GitHub
+        </a>
+    </div>
+    <footer>
+        © 2024 Joyeux Noël, avec amour et magie ✨
+    </footer>
+
+    <script>
+        function generateMessage() {
+            const userName = document.getElementById('userName').value;
+            const messages = [
+                `Cher ${userName}, que ton Noël soit rempli de joie et de magie !`,
+                `${userName}, nous te souhaitons un merveilleux Noël et une année pleine d'amour !`,
+                `Joyeux Noël, ${userName} ! Que tous tes rêves deviennent réalité !`,
+                `Bonne fête, ${userName} ! Profite de cette saison magique !`,
+                `${userName}, que ton Noël soit aussi lumineux que ton sourire !`
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+            const messageDisplay = document.getElementById('messageDisplay');
+            messageDisplay.textContent = randomMessage;
+            messageDisplay.style.display = 'block';
+        }
+
+        // Générer des flocons
+        const createSnowflakes = () => {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.fontSize = Math.random() * 20 + 10 + 'px';
+            snowflake.textContent = '❄️';
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => snowflake.remove(), 10000);
+        };
+
+        setInterval(createSnowflakes, 200);
+        function updateCountdown() {
+            const now = new Date();
+            const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0); // Minuit du 25 décembre
+
+            const totalSeconds = Math.floor((now - todayMidnight) / 1000);
+
+            // Calcul des unités
+            const hours = Math.floor(totalSeconds / 3600); // Heures écoulées depuis minuit
+            const minutes = Math.floor((totalSeconds % 3600) / 60); // Minutes restantes
+            const seconds = totalSeconds % 60; // Secondes restantes
+
+            // Affichage du temps écoulé
+            document.getElementById("countdown").innerHTML = `
+                0 année, 0 mois, 0 jour, 
+                ${hours} heure${hours !== 1 ? 's' : ''}, 
+                ${minutes} minute${minutes !== 1 ? 's' : ''}, 
+                ${seconds} seconde${seconds !== 1 ? 's' : ''}
+            `;
+        }
+
+        // Mettre à jour le compteur chaque seconde
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Appel initial
+
+        function toggleMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+</body>
+</html>
